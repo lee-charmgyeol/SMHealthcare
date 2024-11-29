@@ -32,6 +32,7 @@ int main() {
     // ToCode: to run the "Healthcare Management Systems" until all calories are used up or the user wants to exit the system
     do {
     	if ((health_data.total_calories_intake - 1300 - health_data.total_calories_burned) == 0 ){
+    		printf("=======================================================================\n");
             printf("You have consumed all your calories for today! \n");
             choice = 4;
 		} 
@@ -60,20 +61,21 @@ int main() {
                 break;
                 
             case 3:
-            	
+            	printHealthData(&health_data);
                 break;
                 
             case 4:
             	
     			printf("Exit the system.\n");
     			printf("=======================================================================\n");
+    			saveData(HEALTHFILEPATH, &health_data);
                 break;
                 
             default:
                 printf("[Error] Invalid option. \n");
                 printf("Please try again! \n");
         }
-    } while ( choice!=4 && (health_data.total_calories_intake - 1300 - health_data.total_calories_burned) != 0 );
+    } while ( choice!=4 );
 
     return 0;
 }
