@@ -18,7 +18,7 @@
 
 
 // list of diets 
-Diet diet_list[MAX_DIETS];
+Diet diet_list[MAX_DIETS]; //Delete static for use elsewhere
 int diet_list_size = 0;
 
 
@@ -63,7 +63,7 @@ void inputDiet(HealthData* health_data) {
     // ToCode: to provide the options for the diets to be selected
     printf("The list of diets:\n");
     for(i=0; i<MAX_DIETS; i++){
-    	if(diet_list[i].calories_intake == 0)
+    	if(diet_list[i].calories_intake == 0) //To prevent 100 lines from coming out
 			break;
 		printf("%d. %s (%d kcal)\n", i+1, diet_list[i].food_name, diet_list[i].calories_intake);
 		}
@@ -76,7 +76,7 @@ void inputDiet(HealthData* health_data) {
     // ToCode: to enter the selected diet in the health data
     	health_data->diet_count++;
     	for(j=0; j<MAX_FOOD_NAME_LEN; j++){
-		health_data->diet[health_data->diet_count-1].food_name[j] = diet_list[choice-1].food_name[j];
+		health_data->diet[health_data->diet_count-1].food_name[j] = diet_list[choice-1].food_name[j]; //Use j to copy an array of names
 		}
 		health_data->diet[health_data->diet_count-1].calories_intake = diet_list[choice-1].calories_intake;
 		

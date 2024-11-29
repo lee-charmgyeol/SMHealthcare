@@ -18,8 +18,8 @@
 #define HEALTHFILEPATH "health_data.txt"
 
 static int choice;
-extern Exercise exercise_list[MAX_EXERCISES];
-extern Diet diet_list[MAX_DIETS];
+extern Exercise exercise_list[MAX_EXERCISES]; //Added for use
+extern Diet diet_list[MAX_DIETS]; //Added for use
  
 int main() {
 	// To initialize the health data object
@@ -65,7 +65,6 @@ int main() {
                 break;
                 
             case 4:
-            	
     			printf("Exit the system.\n");
     			printf("=======================================================================\n");
     			saveData(HEALTHFILEPATH, &health_data);

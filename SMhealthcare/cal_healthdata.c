@@ -35,7 +35,7 @@ void saveData(const char* HEALTHFILEPATH, const HealthData* health_data) {
     // ToCode: to save the chosen exercise and total calories burned 
     fprintf(file, "[Exercises] \n");
     for(i=0; i<MAX_EXERCISES; i++){
-    	if(health_data->exercises[i].calories_burned_per_minute == 0)
+    	if(health_data->exercises[i].calories_burned_per_minute == 0) //To prevent 100 lines from being written down
     		break;
     	fprintf(file, "%s - %d kcal\n", health_data->exercises[i].exercise_name, health_data->exercises[i].calories_burned_per_minute);
 	}
@@ -43,7 +43,7 @@ void saveData(const char* HEALTHFILEPATH, const HealthData* health_data) {
     // ToCode: to save the chosen diet and total calories intake 
     fprintf(file, "\n[Diets] \n");
 	for(i=0; i<MAX_DIETS; i++){
-		if(health_data->diet[i].calories_intake == 0)
+		if(health_data->diet[i].calories_intake == 0) //To prevent 100 lines from being written down
 			break;
     	fprintf(file, "%s - %d kcal\n", health_data->diet[i].food_name, health_data->diet[i].calories_intake);
 	}
@@ -68,12 +68,12 @@ void saveData(const char* HEALTHFILEPATH, const HealthData* health_data) {
 
 void printHealthData(const HealthData* health_data) {
 	int i;
-	int remaining_kcal;
+	int remaining_kcal; //To express the remaining calories briefly
 	
 	// ToCode: to print out the saved history of exercises
 	printf("=========================== History of Exercise =======================\n");
 	for(i=0; i<MAX_EXERCISES; i++){
-		if(health_data->exercises[i].calories_burned_per_minute == 0)
+		if(health_data->exercises[i].calories_burned_per_minute == 0) //To prevent 100 lines from being written down
 			break;
 		printf("Exercise: %s, Calories burned: %d kcal\n", health_data->exercises[i].exercise_name, health_data->exercises[i].calories_burned_per_minute);
 	}
@@ -82,7 +82,7 @@ void printHealthData(const HealthData* health_data) {
     // ToCode: to print out the saved history of diets
     printf("============================= History of Diet =========================\n");
 	for(i=0; i<MAX_DIETS; i++){
-		if(health_data->diet[i].calories_intake == 0)
+		if(health_data->diet[i].calories_intake == 0) //To prevent 100 lines from being written down
 			break;
 		printf("Food: %s, Calories intake: %d kcal\n", health_data->diet[i].food_name, health_data->diet[i].calories_intake);
 	}
@@ -100,7 +100,7 @@ void printHealthData(const HealthData* health_data) {
     
 	
 	// ToCode: to print out the recommendtaion depending on the current total calories burned and intake    
-    remaining_kcal = health_data->total_calories_intake - 1300 - health_data->total_calories_burned;
+    remaining_kcal = health_data->total_calories_intake - 1300 - health_data->total_calories_burned; //To express the remaining calories briefly
     if (remaining_kcal == 0){
     	printf("You have consumed all your calories for today!");
     	printf("Exit the system.\n");

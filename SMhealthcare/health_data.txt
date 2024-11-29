@@ -1,14 +1,13 @@
 [Exercises] 
-walking - 8 kcal
-running - 11 kcal
-Total calories burned - 19 kcal
+riding - 500 kcal
+Total calories burned - 500 kcal
 
 [Diets] 
-pizza - 900 kcal
-pizza - 900 kcal
-pizza - 900 kcal
-Total calories intake - 2700 kcal
+rice - 600 kcal
+rice - 600 kcal
+rice - 600 kcal
+Total calories intake - 1800 kcal
 
 [Total] 
 Basal metabolic rate - 1300 kcal
-The remaining calories - 1381 kcal
+The remaining calories - 0 kcal
