@@ -66,9 +66,11 @@ void inputExercise(HealthData* health_data) {
     // ToCode: to provide the options for the exercises to be selected
     printf("The list of exercises: \n");
 	for(i=0; i<MAX_EXERCISES; i++){
+		if(exercise_list[i].calories_burned_per_minute == 0)
+			break; 
 		printf("%d. %s (%d kcal burned per min.)\n", i+1, exercise_list[i].exercise_name, exercise_list[i].calories_burned_per_minute);
 	}
-	printf("7. Exit\nChoose (1-7): \n");
+	printf("7. Exit\nChoose (1-7): ");
 	scanf("%d", &choice);
 	
 	// ToCode: to enter the exercise to be chosen with exit option
