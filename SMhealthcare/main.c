@@ -18,18 +18,22 @@
 #define HEALTHFILEPATH "health_data.txt"
 
 static int choice;
-
+extern Exercise exercise_list[MAX_EXERCISES];
+extern Diet diet_list[MAX_DIETS];
+ 
 int main() {
 	// To initialize the health data object
     HealthData health_data = {0};
     
     // Tocode: to read the list of the exercises and diets
-    
+    loadExercises(EXERCISEFILEPATH);
+    loadDiets(DIETFILEPATH);
 
     // ToCode: to run the "Healthcare Management Systems" until all calories are used up or the user wants to exit the system
     do {
-    	if ( ){
+    	if ((health_data.total_calories_intake - 1300 - health_data.total_calories_burned) == 0 ){
             printf("You have consumed all your calories for today! \n");
+            choice = 4;
 		} 
 		else{
 			printf("\n=======================================================================\n");
@@ -46,11 +50,13 @@ int main() {
 		// ToCode: to run the sysmtem based on the user's choice
         switch (choice) {
             case 1:
-            	
+        		inputExercise(&health_data);
+        		saveData(HEALTHFILEPATH, &health_data);
                 break;
                 
             case 2:
-            	
+            	inputDiet(&health_data);
+            	saveData(HEALTHFILEPATH, &health_data);
                 break;
                 
             case 3:
@@ -67,7 +73,7 @@ int main() {
                 printf("[Error] Invalid option. \n");
                 printf("Please try again! \n");
         }
-    } while ( );
+    } while ( choice!=4 && (health_data.total_calories_intake - 1300 - health_data.total_calories_burned) != 0 );
 
     return 0;
 }

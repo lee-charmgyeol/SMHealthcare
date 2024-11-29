@@ -16,9 +16,8 @@
 #define MAX_EXERCISES 100  			// Maximum number of exercises
 #define MAX_EXERCISE_NAME_LEN 50	// Maximum length of the name of exercise
 
-
 // To declare the structure of the exercises
-static Exercise exercise_list[MAX_EXERCISES];
+Exercise exercise_list[MAX_EXERCISES]; //staticªË¡¶ 
 int exercise_list_size = 0;
 
 
@@ -34,13 +33,19 @@ void loadExercises(const char* EXERCISEFILEPATH) {
     }
 
     // ToCode: to read a list of the exercises from the given file
-    while ( ) {
-    	
+    while (1) {
+		
+		int i;
+		for(i=0; i<MAX_EXERCISES; i++){
+			fscanf(file, "%s %d", exercise_list[i].exercise_name, &exercise_list[i].calories_burned_per_minute);
+			exercise_list_size++;
+		}
+			
         if (exercise_list_size >= MAX_EXERCISES){
         	break;
-		}
+		}	
     }
-
+    
     fclose(file);
 }
 
@@ -60,17 +65,27 @@ void inputExercise(HealthData* health_data) {
     
     // ToCode: to provide the options for the exercises to be selected
     printf("The list of exercises: \n");
-
-
-    // ToCode: to enter the exercise to be chosen with exit option
-
- 
+	for(i=0; i<MAX_EXERCISES; i++){
+		printf("%d. %s (%d kcal burned per min.)\n", i+1, exercise_list[i].exercise_name, exercise_list[i].calories_burned_per_minute);
+	}
+	printf("7. Exit\nChoose (1-7): \n");
+	scanf("%d", &choice);
+	
+	// ToCode: to enter the exercise to be chosen with exit option
+	if(choice != 7){
+		int j;
+		health_data->exercise_count++;
+		for(j=0; j<MAX_EXERCISE_NAME_LEN; j++){
+		health_data->exercises[health_data->exercise_count-1].exercise_name[j] = exercise_list[choice-1].exercise_name[j];
+		}
     
     // To enter the duration of the exercise
-    printf("Enter the duration of the exercise (in min.): ");
-    scanf("%d", &duration);
-
-    // ToCode: to enter the selected exercise and total calcories burned in the health data
-    
+   		printf("Enter the duration of the exercise (in min.): ");
+    	scanf("%d", &duration);
+    	
+    	// ToCode: to enter the selected exercise and total calcories burned in the health data
+		health_data->exercises[health_data->exercise_count-1].calories_burned_per_minute = (exercise_list[choice-1].calories_burned_per_minute)*duration;
+		health_data->total_calories_burned = health_data->total_calories_burned + (exercise_list[choice-1].calories_burned_per_minute)*duration;	
+	}
 
 }
